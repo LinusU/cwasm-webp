@@ -1,0 +1,19 @@
+{
+  "name": "@cwasm/webp",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": "LinusU/cwasm-webp",
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "webp.wasm"
+  ],
+  "scripts": {
+    "prepare": "make webp.wasm",
+    "test": "make test"
+  },
+  "devDependencies": {
+    "lodepng": "^1.2.0",
+    "mocha": "^5.2.0"
+  }
+}
