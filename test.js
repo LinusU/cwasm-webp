@@ -19,4 +19,12 @@ describe('WebP', () => {
     assert.strictEqual(result.height, reference.height)
     assert.deepStrictEqual(result.data, new Uint8ClampedArray(reference.data))
   })
+
+  it('decodes "1.webp"', async () => {
+    const source = fs.readFileSync('fixtures/1.webp')
+    const result = webp.decode(source)
+
+    assert.strictEqual(result.width, 550)
+    assert.strictEqual(result.height, 368)
+  })
 })
