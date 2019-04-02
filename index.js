@@ -3,18 +3,15 @@
 const fs = require('fs')
 const path = require('path')
 
-const env = {
-  __syscall0 (n) { throw new Error(`Syscall ${n} not implemented`) },
-  __syscall1 (n, a) { throw new Error(`Syscall ${n} not implemented`) },
-  __syscall2 (n, a, b) { throw new Error(`Syscall ${n} not implemented`) },
-  __syscall3 (n, a, b, c) { throw new Error(`Syscall ${n} not implemented`) },
-  __syscall4 (n, a, b, c, d) { throw new Error(`Syscall ${n} not implemented`) },
-  __syscall5 (n, a, b, c, d, e) { throw new Error(`Syscall ${n} not implemented`) }
+const wasi_unstable = {
+  fd_close () { throw new Error('Syscall fd_close not implemented') },
+  fd_seek () { throw new Error('Syscall fd_seek not implemented') },
+  fd_write () { throw new Error('Syscall fd_write not implemented') },
 }
 
 const code = fs.readFileSync(path.join(__dirname, 'webp.wasm'))
 const wasmModule = new WebAssembly.Module(code)
-const instance = new WebAssembly.Instance(wasmModule, { env })
+const instance = new WebAssembly.Instance(wasmModule, { wasi_unstable })
 
 exports.decode = function (input) {
   // Allocate memory to hand over the input data to WASM
