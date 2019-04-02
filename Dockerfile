@@ -66,7 +66,7 @@ RUN cp lib/*/libclang_rt.builtins-*.a /usr/lib/llvm-8/lib/clang/8.0.0/lib/
 
 WORKDIR /code
 
-RUN git clone https://chromium.googlesource.com/webm/libwebp && cd libwebp && git checkout v1.0.0
+RUN git clone https://chromium.googlesource.com/webm/libwebp && cd libwebp && git checkout v1.0.2
 
 # Relase build
 RUN clang --sysroot=/sysroot --target=wasm32-unknown-unknown-wasm -Ilibwebp/ -Oz     -o webp.wasm -nostartfiles -fvisibility=hidden -Wl,--no-entry,--demangle,--allow-undefined,--export=malloc,--export=free,--export=WebPDecodeRGBA,--strip-all -- /src/compiler-rt/lib/builtins/*.c libwebp/src/dec/*.c libwebp/src/dsp/*.c libwebp/src/demux/*.c libwebp/src/enc/*.c libwebp/src/mux/*.c libwebp/src/utils/*.c
