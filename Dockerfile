@@ -20,7 +20,7 @@ RUN curl -L https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-
 
 WORKDIR /code
 
-RUN git clone https://chromium.googlesource.com/webm/libwebp && cd libwebp && git checkout v1.0.2
+RUN git clone https://chromium.googlesource.com/webm/libwebp && cd libwebp && git checkout v1.0.3
 
 # Relase build
 RUN clang --sysroot=/share/wasi-sysroot --target=wasm32-unknown-wasi -Ilibwebp/ -Oz     -o webp.wasm -nostartfiles -fvisibility=hidden -Wl,--no-entry,--demangle,--export=malloc,--export=free,--export=WebPDecodeRGBA,--strip-all -- libwebp/src/dec/*.c libwebp/src/dsp/*.c libwebp/src/demux/*.c libwebp/src/enc/*.c libwebp/src/mux/*.c libwebp/src/utils/*.c
