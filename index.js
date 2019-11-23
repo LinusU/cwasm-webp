@@ -5,15 +5,15 @@ const path = require('path')
 
 const ImageData = require('@canvas/image-data')
 
-const wasi_unstable = {
+const stubs = {
   fd_close () { throw new Error('Syscall fd_close not implemented') },
   fd_seek () { throw new Error('Syscall fd_seek not implemented') },
-  fd_write () { throw new Error('Syscall fd_write not implemented') },
+  fd_write () { throw new Error('Syscall fd_write not implemented') }
 }
 
 const code = fs.readFileSync(path.join(__dirname, 'webp.wasm'))
 const wasmModule = new WebAssembly.Module(code)
-const instance = new WebAssembly.Instance(wasmModule, { wasi_unstable })
+const instance = new WebAssembly.Instance(wasmModule, { wasi_unstable: stubs })
 
 exports.decode = function (input) {
   // Allocate memory to hand over the input data to WASM
