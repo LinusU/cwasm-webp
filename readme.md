@@ -2,6 +2,9 @@
 
 WebP decoding for Node.js, using [libwebp][libwebp] compiled to [WebAssembly][WebAssembly].
 
+[libwebp]: https://developers.google.com/speed/webp/docs/api
+[WebAssembly]: https://webassembly.org
+
 ## Installation
 
 ```sh
@@ -26,10 +29,7 @@ console.log(image)
 
 ## API
 
-### `decode(source: Uint8Array): ImageData`
+### `decode(source)`
 
-Decodes raw WebP data into an [`ImageData`][ImageData] object.
-
-[ImageData]: https://developer.mozilla.org/en-US/docs/Web/API/ImageData
-[libwebp]: https://developers.google.com/speed/webp/docs/api
-[WebAssembly]: https://webassembly.org
+- `source` ([`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array), required) - The WEBP data
+- returns [`ImageData`](https://developer.mozilla.org/en-US/docs/Web/API/ImageData) - Decoded width, height and pixel data

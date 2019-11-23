@@ -6,3 +6,4 @@ webp.wasm: Dockerfile
 
 test: webp.wasm index.js test.js
 	@node_modules/.bin/mocha
+	@node_modules/.bin/ts-readme-generator --check
