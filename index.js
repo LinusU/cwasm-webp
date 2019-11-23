@@ -3,6 +3,8 @@
 const fs = require('fs')
 const path = require('path')
 
+const ImageData = require('@canvas/image-data')
+
 const wasi_unstable = {
   fd_close () { throw new Error('Syscall fd_close not implemented') },
   fd_seek () { throw new Error('Syscall fd_seek not implemented') },
@@ -54,5 +56,5 @@ exports.decode = function (input) {
   instance.exports.free(outputPointer)
 
   // Return decoded image as raw data
-  return { width, height, data: output }
+  return new ImageData(output, width, height)
 }
