@@ -1,8 +1,8 @@
 {
   "name": "@cwasm/webp",
   "version": "0.1.2",
-  "license": "MIT",
   "repository": "LinusU/cwasm-webp",
+  "license": "MIT",
   "files": [
     "index.d.ts",
     "index.js",
