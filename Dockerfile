@@ -26,7 +26,7 @@ RUN curl -L https://github.com/WebAssembly/binaryen/releases/download/1.39.1/bin
 
 WORKDIR /code
 
-RUN git clone https://chromium.googlesource.com/webm/libwebp && cd libwebp && git checkout v1.0.3
+RUN git clone https://chromium.googlesource.com/webm/libwebp && cd libwebp && git checkout v1.1.0
 
 # Relase build
 RUN clang --sysroot=/share/wasi-sysroot --target=wasm32-unknown-wasi -Ilibwebp/ -flto -Oz     -o webp.wasm -nostartfiles -fvisibility=hidden -Wl,--no-entry,--demangle,--export=malloc,--export=free,--export=WebPDecodeRGBA,--strip-all -- libwebp/src/dec/*.c libwebp/src/dsp/*.c libwebp/src/demux/*.c libwebp/src/enc/*.c libwebp/src/mux/*.c libwebp/src/utils/*.c
